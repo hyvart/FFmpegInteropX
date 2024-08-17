@@ -5,8 +5,26 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\Output\FFmpegUWP\$(PlatformTarget)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
-	  <AdditionalLibraryDirectories>$(ProjectDir)..\Output\FFmpegUWP\$(PlatformTarget)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+        avcodec.lib;
+        avdevice.lib;
+        avfilter.lib;
+        avformat.lib;
+        avutil.lib;
+        swresample.lib;
+        swscale.lib;
+        %(AdditionalDependencies)
+      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Output\FFmpegUWP\$(PlatformTarget)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(FFmpegInteropXImportFromNuGet)' == 'false'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(FFmpegInteropXVcpkgDirectory)installed\$(PlatformTarget)-uwp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)' == 'Debug'">$(FFmpegInteropXVcpkgDirectory)installed\$(PlatformTarget)-uwp\debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)' == 'Release'">$(FFmpegInteropXVcpkgDirectory)installed\$(PlatformTarget)-uwp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
 </Project>
