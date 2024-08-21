@@ -7,7 +7,6 @@
     <Link>
       <AdditionalDependencies>
         avcodec.lib;
-        avdevice.lib;
         avfilter.lib;
         avformat.lib;
         avutil.lib;
@@ -16,6 +15,14 @@
         %(AdditionalDependencies)
       </AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)..\Output\FFmpegUWP\$(PlatformTarget)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(FFmpegInteropXImportFromNuGet)' != 'false'">
+    <Link>
+      <AdditionalDependencies>
+        avdevice.lib;
+        %(AdditionalDependencies)
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(FFmpegInteropXImportFromNuGet)' == 'false'">
